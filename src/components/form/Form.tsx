@@ -1,18 +1,38 @@
-import INITIAL_DATA from '../../data/INITIAL_DATA';
+import { useNavigate } from 'react-router-dom';
 import { useFormContext } from '../../hooks/useFormContext';
 import { FormInputs } from './FormInputs';
 
 export const Form = () => {
-    const { title, step, setStep, data, setData, canSubmit } = useFormContext();
+    const {
+        title,
+        step,
+        setStep,
+        data,
+        canSubmit,
+        disableBack,
+        disableNext,
+        hideBack,
+        hideNext,
+        hideSubmit,
+    } = useFormContext();
+
+    //move to next step
+    function handleNext() {
+        setStep((current) => current + 1);
+    }
+
+    //move to previous step
+    function handleBack() {
+        setStep((current) => current - 1);
+    }
+
+    const navigate = useNavigate();
 
     async function handleSubmit(e: FormEvent) {
         e.preventDefault();
-        if (!isLastStep) {
-            return next();
-        } else {
-            navigate(`/overview/${data.name}/${data.age}/${data.gender}`);
-        }
+        console.log(JSON.stringify(data));
     }
+
     return (
         <form className="my-12 flex flex-col gap-10" onSubmit={handleSubmit}>
             <header>
@@ -20,18 +40,28 @@ export const Form = () => {
             </header>
             <FormInputs />
             <div>
-                {isFirstStep ? null : (
-                    <button type="button" onClick={back}>
-                        Back
-                    </button>
-                )}
-                {isLastStep ? (
-                    <button disabled={!canSubmit} type="submit">
-                        Submit
-                    </button>
-                ) : (
-                    <button onClick={handleNext}>Start</button>
-                )}
+                <button
+                    type="button"
+                    disabled={disableBack}
+                    onClick={handleBack}
+                    className={`${hideBack ? 'hidden' : ''}`}
+                >
+                    Back
+                </button>
+                <button
+                    onClick={handleNext}
+                    disabled={disableNext}
+                    className={`${hideNext ? 'hidden' : ''}`}
+                >
+                    Next
+                </button>
+                <button
+                    disabled={!canSubmit}
+                    type="submit"
+                    className={`${hideSubmit ? 'hidden' : ''}`}
+                >
+                    Submit
+                </button>
             </div>
         </form>
     );

@@ -18,6 +18,7 @@ export default {
                 42: 'repeat(42, minmax(0, 1fr))',
                 52: 'repeat(52, minmax(0, 1fr))',
                 60: 'repeat(60, minmax(0, 1fr))',
+                81: 'repeat(81, minmax(0, 1fr))',
                 84: 'repeat(84, minmax(0, 1fr))',
                 100: 'repeat(100, minmax(0, 1fr))',
             },

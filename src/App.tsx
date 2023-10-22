@@ -1,20 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
-import Input from './pages/input/Input';
 import Home from './pages/home/Home';
 import Overview from './pages/output/overview/Overview';
+import { NotFound } from './pages/Util/error/NotFound';
+import { Loading } from './pages/Util/loading/Loading';
 
 const App = () => {
     return (
-        <main className="bg-black ">
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/input" element={<Input />} />
-                <Route
-                    path="/overview/:name/:age/:gender"
-                    element={<Overview />}
-                />
-            </Routes>
-        </main>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/loading" element={<Loading />} />
+            <Route path="/overview" element={<Overview />} />
+            <Route path="*" element={<NotFound />} />
+        </Routes>
     );
 };
 

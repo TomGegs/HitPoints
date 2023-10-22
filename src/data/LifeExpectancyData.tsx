@@ -1,16 +1,18 @@
-import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { FormContext } from '../context/FormContext';
 
 export const LifeExpectancyData = () => {
-    const { gender, age } = useParams();
-    const userGender = gender;
+    const { userAge, userGender } = useContext(FormContext).state;
+
+    const gender = userGender;
 
     //convert age to years, months and weeks
-    const ageYears = parseInt(age || '0');
+    const ageYears = userAge;
     const ageMonths = Math.floor(ageYears * 12.008);
     const ageWeeks = Math.floor(ageYears * 52.179);
 
     //life expectancy in Australia
-    const ausAverageLifeExpectancyYears = userGender === 'Male' ? 81 : 86;
+    const ausAverageLifeExpectancyYears = gender === 'Male' ? 81 : 86;
     const ausAverageLifeExpectancyMonths = Math.floor(
         ausAverageLifeExpectancyYears * 12.008
     );
@@ -23,14 +25,19 @@ export const LifeExpectancyData = () => {
     const ageMonthsRemaining = ausAverageLifeExpectancyMonths - ageMonths;
     const ageWeeksRemaining = ausAverageLifeExpectancyWeeks - ageWeeks;
 
+    //Clock countdown
+    const clockYearRemaining = ageYearRemaining;
+    const clockMonthsRemaining = ageMonthsRemaining;
+    const clockWeeksRemaining = ageWeeksRemaining;
+
     //Marriage data
-    const marriageAge = userGender === 'Male' ? 32 : 31;
+    const marriageAge = gender === 'Male' ? 32 : 31;
     const marriageAgeYears = marriageAge;
     const marriageAgeMonths = Math.floor(marriageAgeYears * 12.008);
     const marriageAgeWeeks = Math.floor(marriageAgeYears * 52.179);
 
     //Divorce data
-    const divorceAge = userGender === 'Male' ? 46 : 43;
+    const divorceAge = gender === 'Male' ? 46 : 43;
     const divorceAgeYears = divorceAge;
     const divorceAgeMonths = Math.floor(divorceAgeYears * 12.008);
     const divorceAgeWeeks = Math.floor(divorceAgeYears * 52.179);
@@ -45,7 +52,6 @@ export const LifeExpectancyData = () => {
         ausAverageLifeExpectancyYears,
         ausAverageLifeExpectancyMonths,
         ausAverageLifeExpectancyWeeks,
-        age,
         marriageAgeYears,
         marriageAgeMonths,
         marriageAgeWeeks,

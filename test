@@ -1,0 +1,99 @@
+//ADDITIONAL LOGIC AND NAVIGATION FOR FORM EXPANSION
+// interface FormContextType {
+//     title: { [key: number]: string };
+//     step: number;
+//     data: typeof INITIAL_DATA;
+//     setData: (data: typeof INITIAL_DATA) => void;
+//     canSubmit: boolean;
+// }
+/* <FormContextType>({
+    title: { 0: '', 1: '' },
+    step: 0,
+    setStep: (step: number) => {},
+    data: INITIAL_DATA,
+    setData: (data: typeof INITIAL_DATA) => {},
+    canSubmit: false, */
+
+// const FormContext = createContext({});
+
+// interface FormProviderProps {
+//     children: ReactNode;
+// }
+
+// export const FormProvider: FC<FormProviderProps> = ({ children }) => {
+// Title of each form stage
+//     const title = {
+//         0: 'HitPoints',
+//         1: 'Your Details',
+//     };
+
+//     const [step, setStep] = useState(0);
+//     const [data, setData] = useState(INITIAL_DATA);
+
+//     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//         dispatchEvent({
+//             type: REDUCER_ACTION_TYPE.NEW_AGE,
+//             payload: parseInt(e.target.value),
+//             type: REDUCER_ACTION_TYPE.NEW_GENDER,
+//             payload: e.target.value as (typeof INITIAL_DATA)['userGender'],
+//         });
+
+// const type = e.target.type;
+// const name = e.target.name;
+// const value =
+//     type === 'number' ? parseInt(e.target.value) : e.target.value;
+
+// setData({ ...data, [name]: value });
+//     };
+
+//     const { userGender, userAge, ...requiredInputs } = data;
+
+//     // VALIDATION AND NAVIGATION LOGIC
+//     // Check all mandatory fields are filled
+//     const canSubmit =
+//         Object.values(requiredInputs).every(Boolean) &&
+//         step === Object.keys(title).length - 1;
+
+//     //Check specific mandatory fields are filled (age & gender)
+//     const canNextStep1 = Object.keys(data)
+//         .filter((key) => key.startsWith('user'))
+//         .map((key) => data[key])
+//         .every(Boolean);
+
+//     //Disable back button on first step
+//     const disableBack = step === 0;
+
+//     //Disable next button on last step or if mandatory fields are not filled
+//     const disableNext =
+//         step === Object.keys(title).length - 1 || (step === 0 && !canNextStep1);
+
+//     //Hide back button on first step
+//     const hideBack = step === 0;
+
+//     //Hide next button on last step
+//     const hideNext = step === Object.keys(title).length - 1;
+
+//     //Hide submit button on all steps except last
+//     const hideSubmit = step !== Object.keys(title).length - 1;
+
+//     return (
+//         <FormContext.Provider
+//             value={{
+//                 title,
+//                 handleChange,
+//                 step,
+//                 setStep,
+//                 data,
+//                 setData,
+//                 canSubmit,
+//                 disableBack,
+//                 disableNext,
+//                 hideBack,
+//                 hideNext,
+//                 hideSubmit,
+//             }}
+//         >
+//             {children}
+//         </FormContext.Provider>
+//     );
+// };
